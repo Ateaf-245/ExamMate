@@ -1,0 +1,67 @@
+<div class="bootstrap-wrapper mt10">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+
+                <mat-card>
+                    <mat-card-content>
+                        <div class="container text-center">
+                            <img src="../../../assets/Logo.png" alt="" height="100" width="100" />
+                        </div>
+
+                        <h1 class="text-center"> Login here !!</h1>
+
+                        <!-- {{loginData | json}} -->
+
+                        <form (ngSubmit)="formSubmit()">
+
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Username</mat-label>
+                                <input 
+                                   [(ngModel)]="loginData.username"
+                                    name="username" 
+                                    required
+                                    matInput 
+                                    placeholder="Enter here">
+                                <mat-hint>Valid username</mat-hint>
+                            </mat-form-field>
+
+                            <!-- password  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Password</mat-label>
+                                <input 
+                                    [(ngModel)]="loginData.password"
+                                    required
+                                    name="password" 
+                                    matInput 
+                                    [type]="hide ? 'password' : 'text'">
+
+                                <button 
+                                    mat-icon-button 
+                                    matSuffix 
+                                    (click)="hide = !hide"
+                                    [attr.aria-label]="'Hide password'" 
+                                    [attr.aria-pressed]="hide">
+
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                            </mat-form-field>
+
+                            <div class="containe text-center">
+                                <button mat-raised-button color="primary">Login</button>
+                                <a (click)="formClear()" style="margin-left: 20px;" mat-raised-button color="accent">reset</a>
+                            </div>
+
+                            <div class="container text-center">
+
+                                <h3>forgotten your password, click <a routerLink="#" >here</a></h3>
+                                <h3>Create a account <a routerLink="/signup">Register</a></h3>
+                            </div>
+
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

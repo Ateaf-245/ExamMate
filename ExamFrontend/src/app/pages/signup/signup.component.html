@@ -1,0 +1,87 @@
+
+<div class="bootstrap-wrapper mt10">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-6 offset-md-3">
+
+                <mat-card>
+                    <mat-card-content>
+                        <div class="container text-center">
+                            <img src="../../../assets/Logo.png" alt="" height="100" width="100" />
+                        </div>
+
+                        <h1 class="text-center"> Register here !!</h1>
+
+                        <form (ngSubmit)="formSubmit()">
+
+                            <!-- data verify -->
+                            <!-- {{user| json}} -->
+
+                            <!-- Username  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Username</mat-label>
+                                <input [(ngModel)]="user.username" name="username" matInput placeholder="Enter here">
+                                <mat-hint>Username must be unique</mat-hint>
+                            </mat-form-field>
+
+
+                            <!-- password  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Password</mat-label>
+                                <input [(ngModel)]="user.password" name="password" matInput
+                                    [type]="hide ? 'password' : 'text'">
+
+
+                                <!-- <button 
+                            mat-icon-button 
+                            matSuffix (click)="hide = !hide" 
+                            [attr.aria-label]="'Hide password'" 
+                            [attr.aria-pressed]="hide">
+
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button> -->
+                            </mat-form-field>
+
+                            <!-- First Name  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>First Name</mat-label>
+                                <input [(ngModel)]="user.firstname" name="firstname" matInput placeholder="Enter here">
+                            </mat-form-field>
+
+                            <!-- Last name  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Last Name</mat-label>
+                                <input [(ngModel)]="user.lastname" name="lastname" matInput placeholder="Enter here">
+                            </mat-form-field>
+
+                            <!-- Email  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Email Address</mat-label>
+                                <input [(ngModel)]="user.email" name="email" matInput placeholder="abcd@example.com"
+                                    [formaction]="email">
+                                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                            <!-- Last name  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Phome Number</mat-label>
+                                <input [(ngModel)]="user.phone" name="phome" type="number" matInput
+                                    placeholder="Enter here">
+                            </mat-form-field>
+
+                            <div class="containe text-center">
+                                <button mat-raised-button color="primary">Register</button>
+                                <a  (click)="formClear()"class="ml20" mat-raised-button color="accent">Clear</a>
+                            </div>
+
+                            <div class="container text-center">
+                                <h3>Already having a account <a routerLink="/login" >login</a></h3>
+                            </div>
+
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
