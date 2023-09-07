@@ -3,15 +3,36 @@
         <div class="container">
         <div mat-subheader>Menu</div>
         
-        <a mat-list-item routerLink="/admin/home" >
-            <mat-icon matListIcon>home</mat-icon>
+        <button mat-list-item routerLink="/admin/home" >
+            <mat-icon class="Icon_style" mat-list-icon>home</mat-icon>
             <span> Home</span>
-
-        </a>
-        <button mat-list-item routerLink="/admin/profile" >
-            <mat-icon matListIcon>account_circle</mat-icon>
-            <span > Profile</span>
         </button>
+        <button  mat-list-item routerLink="/admin/profile" >
+            <mat-icon class="Icon_style" mat-list-ico>account_circle</mat-icon>
+            <span> Profile</span>
+        </button>
+        <button mat-list-item routerLink="/admin/categories" >
+            <mat-icon class="Icon_style"  viewBox="0 0 179.2 192.7" matListIcon>list</mat-icon>
+            <span > Categories</span>
+        </button>
+        <button mat-list-item routerLink="/admin/add-category" >
+            <mat-icon class="Icon_style" mat-list-ico>post_add</mat-icon>
+            <span > Add Categories</span>
+        </button>
+        <button mat-list-item routerLink="/admin/quizzes" >
+            <mat-icon class="Icon_style" mat-list-ico>quiz</mat-icon>
+            <span > Quizzes</span>
+        </button>
+        <button mat-list-item routerLink="/admin/add-quiz" >
+            <mat-icon class="Icon_style" matListIcon>add</mat-icon>
+            <span> Add Quiz</span>
+        </button>
+        <button mat-list-item (click)="logout()" >
+            <mat-icon class="Icon_style" matListIcon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+    
     </div>
     </mat-action-list>
 </mat-card>
+

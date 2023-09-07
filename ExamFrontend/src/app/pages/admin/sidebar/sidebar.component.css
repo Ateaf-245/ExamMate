@@ -1,4 +1,14 @@
 .example-spacer {
     flex: 1 1 auto;
-    align-items: bottom;
+   
   }
+
+  .Icon_style{
+    height: 20px;
+    width: 22px;
+    font-size: x-large;
+    margin-right: 4px;
+  }
+
+
+

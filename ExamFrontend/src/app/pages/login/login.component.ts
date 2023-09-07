@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
+import { SweetAlertService } from 'src/app/services/sweet-alert.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,7 +17,10 @@ export class LoginComponent {
     password:'',
   };
 
-  constructor(private _snackBar: MatSnackBar, private login:LoginService,private router:Router){}
+  constructor(private _snackBar: MatSnackBar, 
+              private login:LoginService,
+              private router:Router,
+              private sweetAlert:SweetAlertService){}
 
   formSubmit(){
     // console.log("login form submit")
@@ -38,26 +42,8 @@ export class LoginComponent {
     this.login.generateToken(this.loginData).subscribe(
       (data:any)=>{
          //success
-         //console.log(data)
-
          //sweat alert
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-
-        Toast.fire({
-          icon: 'success',
-          title: 'Logged in successfully',
-        
-        })
+         this.sweetAlert.showToast('success','Logged in successfully')
 
         //login
         this.login.loginUser(data.token);
@@ -83,25 +69,8 @@ export class LoginComponent {
           },
           
           (error:any)=>{
-           
-            // console.log(error)
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 1000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
-    
-            Toast.fire({
-              icon: 'error',
-              title: 'Something went wrong !!'
-            })
-    
+            // console.log(error) 
+            this.sweetAlert.showToast('error','Something went wrong !!')
           }
         );
            
@@ -109,24 +78,12 @@ export class LoginComponent {
       (error)=>{
 
         //error
-        // console.log(error)
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-
-        Toast.fire({
-          icon: 'error',
-          title: 'InValid Credentails'
-        })
-
+        console.log(error.error.message)
+        if (error.error.message=="Bad credentials") {
+          this.sweetAlert.showToast('error','InValid Credentails')
+        }else{
+          this.sweetAlert.showToast('error','Something went wrong !!')
+        }
         //clears the username & password
         this.formClear()
       }

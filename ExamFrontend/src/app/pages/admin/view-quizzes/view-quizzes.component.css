@@ -1,0 +1,19 @@
+.example-header-image {
+    background-image: url('./../../../../assets/quiz.png');
+    background-size: cover;
+  }
+
+  .bg_color{
+    background-color: #069b44;
+    color: #ffffff;
+}
+
+.txt_color{
+    color: #069b44;
+    background-color: #ffffff;
+}
+
+.delete_color{
+  color: #ffffff;
+  background-color: #ff0101;
+}

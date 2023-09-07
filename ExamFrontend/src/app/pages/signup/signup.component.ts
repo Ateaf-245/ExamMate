@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/User/user.service';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import Swal from 'sweetalert2';
 import baseUrl from '../../services/helper';
+import { SweetAlertService } from "src/app/services/sweet-alert.service";
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,9 @@ import baseUrl from '../../services/helper';
 })
 export class SignupComponent {
 
-  constructor(private userService: UserService, private _snackBar: MatSnackBar) { }
+  constructor(private userService: UserService, 
+              private _snackBar: MatSnackBar,
+              private sweetAlert:SweetAlertService) { }
 
   public user = {
     username: '',
@@ -47,49 +50,15 @@ export class SignupComponent {
     this.userService.addUser(this.user).subscribe(
       (data) => {
         //success
-        //console.log(data)
-
         //sweat alert
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-
-        Toast.fire({
-          icon: 'success',
-          title: 'Successfully Registered'
-        })
-
+        this.sweetAlert.showToast('success','Successfully Registered')
         this.formClear();
 
       },
       (error) => {
         //error
-        // console.log(error)
         // console.log(error.error.message)
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-
-        Toast.fire({
-          icon: 'error',
-          title:  `${error.error.message}`
-        })
+        this.sweetAlert.showToast('error',`${error.error.message}`)
       }
     )
   }

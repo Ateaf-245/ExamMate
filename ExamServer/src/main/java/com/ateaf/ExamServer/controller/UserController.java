@@ -4,6 +4,7 @@ import com.ateaf.ExamServer.Exception.UserNotFoundException;
 import com.ateaf.ExamServer.model.Role;
 import com.ateaf.ExamServer.model.User;
 import com.ateaf.ExamServer.model.UserRole;
+import com.ateaf.ExamServer.model.exam.Category;
 import com.ateaf.ExamServer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,7 @@ public class UserController {
         userRole.setUser(user);
         System.out.println(user);
         userRole.setRole(role);
+
 
         roles.add(userRole);
 

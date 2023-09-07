@@ -14,6 +14,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatSelectModule} from '@angular/material/select';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -26,6 +30,15 @@ import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboa
 import { ProfileComponent } from './pages/profile/profile/profile.component';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
+import { TempComponent } from "./temp.component";
+import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
+import { AddCategoriesComponent } from './pages/admin/add-categories/add-categories.component';
+import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
+import { AddQuizzesComponent } from './pages/admin/add-quizzes/add-quizzes.component';
+import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.component';
+import { ViewQuestionsComponent } from './pages/admin/view-questions/view-questions.component';
+import { AddQuestionsComponent } from './pages/admin/add-questions/add-questions.component';
+import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
 
 
 @NgModule({
@@ -40,7 +53,18 @@ import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.componen
     UserDashboardComponent,
     ProfileComponent,
     SidebarComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    TempComponent,
+    ViewCategoriesComponent,
+    AddCategoriesComponent,
+    ViewQuizzesComponent,
+    AddQuizzesComponent,
+    UpdateQuizComponent,
+    ViewQuestionsComponent,
+    AddQuestionsComponent,
+    UpdateQuestionComponent
+
+  
   ],
   imports: [
     BrowserModule,
@@ -56,6 +80,10 @@ import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.componen
     MatCardModule,
     MatToolbarModule,
     MatListModule,
+    MatTableModule,
+    MatDividerModule,
+    MatSlideToggleModule,
+    MatSelectModule,
   ],
   providers: [authIntercepterProvider],
   bootstrap: [AppComponent]
