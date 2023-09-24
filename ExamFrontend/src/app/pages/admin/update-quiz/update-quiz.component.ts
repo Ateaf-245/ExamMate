@@ -51,7 +51,6 @@ export class UpdateQuizComponent implements OnInit {
     this._quiz.getQuizById(this.quizId).subscribe(
       (data) => {
         this.quiz = data;
-        console.log(this.quiz)
       },
       (error) => {
         Swal.fire("Error !!", "Unable to fetch the data from server", "error")

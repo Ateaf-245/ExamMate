@@ -49,18 +49,22 @@ export class LoginComponent {
         this.login.loginUser(data.token);
         this.login.getCurrentUser().subscribe(
           (user :any)=>{
+            // console.log(user)
             this.login.setUser(user);
+            
 
             if (this.login.getUserRole()=='ADMIN') {
 
               //redirect ..ADMIN: admin-dashboard
-              this.router.navigate(['admin'])
+              this.router.navigate(['admin/home'])
+              this.login.status = true
               this.login.loginSubjectStatus.next(true);
               
             }else  if (this.login.getUserRole()=='NORMAL'){
 
               //redirect ..NORMAL: normal-dashboard
-              this.router.navigate(['user-dashboard'])
+              this.router.navigate(['user-dashboard/home'])
+              this.login.status = true
               this.login.loginSubjectStatus.next(true);
 
             }else{
@@ -69,7 +73,7 @@ export class LoginComponent {
           },
           
           (error:any)=>{
-            // console.log(error) 
+            console.log(error) 
             this.sweetAlert.showToast('error','Something went wrong !!')
           }
         );
@@ -80,7 +84,7 @@ export class LoginComponent {
         //error
         console.log(error.error.message)
         if (error.error.message=="Bad credentials") {
-          this.sweetAlert.showToast('error','InValid Credentails')
+          this.sweetAlert.showToast('error','Invalid Credentails')
         }else{
           this.sweetAlert.showToast('error','Something went wrong !!')
         }

@@ -48,9 +48,21 @@ public class QuestionController {
         return ResponseEntity.ok(questionService.getQuestionsOfQuiz(quiz));
     }
 
+    @GetMapping("/quiz/admin/{quizId}")
+    public ResponseEntity<?> getQuestionsOfQuizAdmin(@PathVariable Long quizId){
+
+        Quiz quiz =  quizService.getQuiz(quizId);
+        return ResponseEntity.ok(questionService.getQuestionsOfQuizAdmin(quiz));
+    }
+
     @DeleteMapping("/{questionId}")
     public void deleteQuestion(@PathVariable Long questionId){
         questionService.deleteQuestion(questionId);
     }
 
+
+    @PostMapping("/eval-quiz/{username}")
+    public ResponseEntity<?> evalQuiz(@PathVariable String username, @RequestBody List<Question> questions){
+        return ResponseEntity.ok(questionService.evalQuiz(username,questions));
+    }
 }

@@ -28,6 +28,7 @@ constructor(private _activedRouter:ActivatedRoute,
    
     this._questions.viewQuestionsbyQidAdmin(this.qId).subscribe(
       (data) => {
+       
         this.questions = data;
       },
       (error) => {
@@ -56,7 +57,7 @@ constructor(private _activedRouter:ActivatedRoute,
         this._questions.deleteQuestion(questionId).subscribe(
           (data) => {
 
-            this.questions = this.questions.filter((quiz: any) => quiz.qid != questionId)
+            this.questions = this.questions.filter((question: any) => question.questionId != questionId)
             Swal.fire("Success !!", "Quiz deleted successfully", 'success');
 
           },

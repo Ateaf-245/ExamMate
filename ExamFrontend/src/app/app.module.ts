@@ -18,19 +18,21 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from '@angular/material/select';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
+
 import { SignupComponent } from './pages/signup/signup.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import { authIntercepterProvider } from './services/auth.intercepter';
+
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
-import { ProfileComponent } from './pages/profile/profile/profile.component';
 import { SidebarComponent } from './pages/admin/sidebar/sidebar.component';
 import { AdminHomeComponent } from './pages/admin/admin-home/admin-home.component';
-import { TempComponent } from "./temp.component";
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
 import { AddCategoriesComponent } from './pages/admin/add-categories/add-categories.component';
 import { ViewQuizzesComponent } from './pages/admin/view-quizzes/view-quizzes.component';
@@ -39,6 +41,20 @@ import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.compo
 import { ViewQuestionsComponent } from './pages/admin/view-questions/view-questions.component';
 import { AddQuestionsComponent } from './pages/admin/add-questions/add-questions.component';
 import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
+
+import { ProfileComponent } from './pages/profile/profile/profile.component';
+import { UserDashboardComponent } from './pages/user/user-dashboard/user-dashboard.component';
+import { SidebarComponent as UserSidebar} from './pages/user/sidebar/sidebar.component';
+
+import { TempComponent } from "./temp.component";
+import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
+import { PrequizInstructionsComponent } from './pages/user/prequiz-instructions/prequiz-instructions.component';
+import { StartComponent } from './pages/user/start/start.component';
+import { UserQuizDashboardComponent } from './pages/user/user-quiz-dashboard/user-quiz-dashboard.component';
+import { UpdateProfileComponent } from './pages/profile/update-profile/update-profile.component';
+import { ForgotPasswordComponent } from './pages/profile/forgot-password/forgot-password.component';
+
+
 
 
 @NgModule({
@@ -62,10 +78,16 @@ import { UpdateQuestionComponent } from './pages/admin/update-question/update-qu
     UpdateQuizComponent,
     ViewQuestionsComponent,
     AddQuestionsComponent,
-    UpdateQuestionComponent
-
-  
+    UpdateQuestionComponent,
+    UserSidebar,
+    LoadQuizComponent,
+    PrequizInstructionsComponent,
+    StartComponent,
+    UserQuizDashboardComponent,
+    UpdateProfileComponent,
+    ForgotPasswordComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -84,6 +106,13 @@ import { UpdateQuestionComponent } from './pages/admin/update-question/update-qu
     MatDividerModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground:true
+    }),
+  
+    
   ],
   providers: [authIntercepterProvider],
   bootstrap: [AppComponent]

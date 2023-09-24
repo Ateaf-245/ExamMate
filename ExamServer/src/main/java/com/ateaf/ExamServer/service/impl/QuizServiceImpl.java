@@ -1,5 +1,6 @@
 package com.ateaf.ExamServer.service.impl;
 
+import com.ateaf.ExamServer.model.exam.Category;
 import com.ateaf.ExamServer.model.exam.Quiz;
 import com.ateaf.ExamServer.repository.QuizRepository;
 import com.ateaf.ExamServer.service.QuizService;
@@ -31,6 +32,11 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
+    public Set<Quiz> getQuizzesByCategory(Category category) {
+        return new LinkedHashSet<>(quizRepository.findByCategory(category));
+    }
+
+    @Override
     public Quiz getQuiz(Long quizId) {
         return quizRepository.findById(quizId).get();
     }
@@ -38,5 +44,15 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public void deleteQuiz(Long quizId) {
         quizRepository.deleteById(quizId);
+    }
+
+    @Override
+    public Set<Quiz> getQuizzesActive() {
+        return new LinkedHashSet<>(quizRepository.findByisActive(true));
+    }
+
+    @Override
+    public Set<Quiz> getQuizzesByCategoryActive(Category category) {
+        return new LinkedHashSet<>(quizRepository.findByCategoryAndIsActive(category,true));
     }
 }

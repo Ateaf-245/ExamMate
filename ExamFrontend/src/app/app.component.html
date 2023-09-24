@@ -1,5 +1,28 @@
 <!-- navbar static -->
-<app-navbar></app-navbar>
+<ngx-ui-loader 
+    fgsColor="#FFD588"
+    fgsPosition="center-center"
+    [fgsSize]="70"
+    fgsType="fading-circle"
 
-<!-- dynamic content -->
-<router-outlet></router-outlet>
+    pbColor="#FFD588"
+    pbDirection="ltr"
+    [pbThickness]="5"
+    [hasProgressBar]="true"
+    text="please wait..."
+    textColor="#FFD588"
+    textPosition="center-center"
+></ngx-ui-loader>
+
+
+<div ngxUiLoaderBlurred [blur]="5">
+    <!-- This page content will be blurred/frosted when foreground loader is showed -->
+    <app-navbar></app-navbar>
+
+    <!-- dynamic content -->
+    
+    <router-outlet></router-outlet>  
+</div>
+
+
+

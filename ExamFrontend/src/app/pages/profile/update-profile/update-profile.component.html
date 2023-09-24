@@ -1,0 +1,80 @@
+
+<div class="bootstrap-wrapper mt10">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-8 offset-md-2">
+
+                <mat-card>
+                    <mat-card-content>
+                        <div class="container text-center">
+                            <img 
+                        src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg" 
+                        alt=""
+                        class="profile-image"
+                        >
+                        </div>
+
+                        <h1 class="text-center">{{user.username}}</h1>
+
+                        <form (ngSubmit)="formSubmit()">
+
+                            <!-- data verify -->
+                            <!-- {{user| json}} -->
+
+                            <!-- Username  -->
+                           
+
+
+                          
+
+                            <!-- First Name  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>First Name</mat-label>
+                                <input [(ngModel)]="user.firstname" name="firstname" matInput placeholder="Enter here">
+                            </mat-form-field>
+
+                            <!-- Last name  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Last Name</mat-label>
+                                <input [(ngModel)]="user.lastname" name="lastname" matInput placeholder="Enter here">
+                            </mat-form-field>
+
+                            <!-- Email  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Email Address</mat-label>
+                                <input [(ngModel)]="user.email" name="email" matInput placeholder="abcd@example.com"
+                                    [formaction]="email">
+                                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                            </mat-form-field>
+
+                            <!-- Last name  -->
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Phome Number</mat-label>
+                                <input [(ngModel)]="user.phone" name="phome" type="number" matInput
+                                    placeholder="Enter here">
+                            </mat-form-field>
+
+                              <!-- password  -->
+                              <mat-form-field class="full-width" appearance="outline" *ngIf="changePwd">
+                                <mat-label>Password</mat-label>
+                                <input [(ngModel)]="user.password" name="password" matInput
+                                    [type]="hide ? 'password' : 'text'">
+
+
+                            </mat-form-field>
+
+                            <div class="containe text-center">
+                                <button mat-raised-button color="primary">Update</button>
+                            </div>
+
+                            <div class="container text-center mt20" *ngIf="!changePwd">
+                                <button mat-raised-button (click)="changePwd=true">Change password </button>
+                            </div>
+
+                        </form>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

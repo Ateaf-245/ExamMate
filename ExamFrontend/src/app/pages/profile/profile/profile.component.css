@@ -20,3 +20,11 @@
     font: weight 100px;
 }
 
+.file-upload{
+    border: 2px;
+    border-color: black;
+}
+
+.file-input {
+    display: none;
+  }

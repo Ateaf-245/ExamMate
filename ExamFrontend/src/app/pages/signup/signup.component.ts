@@ -29,8 +29,6 @@ export class SignupComponent {
   // form submit
   formSubmit() {
 
-    console.log(this.user)
-
     if (this.user.username == '' || this.user.username == null ||
       this.user.firstname == '' || this.user.firstname == null ||
       this.user.lastname == '' || this.user.lastname == null ||

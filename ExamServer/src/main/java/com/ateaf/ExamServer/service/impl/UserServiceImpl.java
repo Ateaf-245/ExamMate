@@ -2,6 +2,7 @@ package com.ateaf.ExamServer.service.impl;
 
 import com.ateaf.ExamServer.Exception.UserNameAlreadyExistsException;
 import com.ateaf.ExamServer.Exception.UserNotFoundException;
+import com.ateaf.ExamServer.model.Role;
 import com.ateaf.ExamServer.model.User;
 import com.ateaf.ExamServer.model.UserRole;
 import com.ateaf.ExamServer.repository.RoleRepository;
@@ -9,6 +10,7 @@ import com.ateaf.ExamServer.repository.UserRepository;
 import com.ateaf.ExamServer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Set;
@@ -60,21 +62,42 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(String username, User user, Set<UserRole> userRoles) {
+    public User updateUser( User user){
 
-        User local = this.userRepository.findByUsername(username);
-        if (local==null) {
-            System.out.println("User is not present!!");
-        }else {
+        User local = this.userRepository.findByUsername(user.getUsername());
 
-            for (UserRole role: userRoles){
-                roleRepository.save(role.getRole());
-            }
+       try{
+           if (local != null) {
 
-            user.getUserRoles().addAll(userRoles);
-            local = this.userRepository.save(user);
+               local.setFirstname(user.getFirstname());
+               local.setLastname(user.getLastname());
+               local.setEmail(user.getEmail());
+               local.setPhone(user.getPhone());
 
-        }
+
+
+               if (user.getUserRoles() != null) {
+                   user.getUserRoles().forEach(userRole -> {
+                       if (userRole != null && userRole.getRole() != null) {
+                           Role existingRole = null;
+                           try {
+                               existingRole = roleRepository.findById(userRole.getRole().getRoleId())
+                                       .orElseThrow(() -> new Exception("Role not found"));
+                           } catch (Exception e) {
+                               throw new RuntimeException(e);
+                           }
+
+                           userRole.setRole(existingRole); // Associate with existing role
+                       }
+                   });
+               }
+               local = this.userRepository.save(local);
+           }
+
+       }catch (Exception e){
+           e.printStackTrace();
+       }
         return local;
     }
+
 }

@@ -9,6 +9,9 @@ export class QuizService {
 
   constructor(private _http:HttpClient) { }
 
+  //Admin
+
+  // get quizzes
   public Quizzes(){
     return this._http.get(`${baseUrl}/quiz/`)
   }
@@ -29,9 +32,33 @@ export class QuizService {
 
   }
 
-  //update the quiz
-  public updateQuiz(Quiz:any){
+   //update the quiz
+   public updateQuiz(Quiz:any){
     return this._http.put(`${baseUrl}/quiz/`,Quiz)
 
   }
+
+  //Normal user
+
+   //get the quiz by cId 
+   public getQuizByCatId(cid:any){
+    return this._http.get(`${baseUrl}/quiz/category/${cid}`,cid)
+
+  }
+
+
+  //active quiz
+
+  //get the quiz
+  public getActiveQuizzes(){
+    return this._http.get(`${baseUrl}/quiz/active/`)
+  }
+
+   //get the quiz by cId 
+   public getActiveQuizByCatId(cid:any){
+    return this._http.get(`${baseUrl}/quiz/active/category/${cid}`,cid)
+
+  }
+
+ 
 }

@@ -1,3 +1,4 @@
+
 <mat-card *ngIf="user">
     <div class="bootstrap-wrapper">
 
@@ -38,12 +39,6 @@
                                 <td>E-Mail</td>
                                 <td>{{user.email}}</td>
                             </tr>
-                        
-                            <tr>
-                                <td>Role</td>
-                                <td>{{user.authorities[0].authority}}</td>
-                            </tr>
-
                             <tr>
                                 <td>Status</td>
                                 <td>{{user.enabled?"ACTIVE":"NOT ACTIVE"}}</td>
@@ -55,8 +50,8 @@
                 </div>
             </mat-card-content>
             <div class="container text-center mb20">
-                <button mat-raised-button color="primary">UPDATE</button>
-            </div>
+                <button mat-raised-button (click)="updateProfile()" color="primary">UPDATE</button>
+            </div>                   
         </div>
     </div>
 </mat-card>

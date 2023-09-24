@@ -13,11 +13,8 @@ export class ViewQuizzesComponent implements OnInit {
   quizzes: any = []
 
   constructor(private _quizzes: QuizService, 
-              private router: Router) {
-
-
-
-  }
+              private router: Router) {}
+              
   ngOnInit(): void {
     this._quizzes.Quizzes().subscribe(
       (data) => {

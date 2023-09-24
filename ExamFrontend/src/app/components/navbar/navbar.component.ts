@@ -9,37 +9,67 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class NavbarComponent implements OnInit {
 
-   isLoggedIn = false;
-   currentUserName:any = null;
- 
+  isLoggedIn = false;
+  currentUserName: any = null;
+  da:any
 
-  constructor(private login:LoginService,private router:Router){   
-  }
+  constructor(private login: LoginService, private router: Router) {}
 
-  
   ngOnInit(): void {
 
-    this.isLoggedIn = this.login.isLoggedIn();
-    this.currentUserName = this.login.getUserDetials();
+    this.login.getCurrentUser().subscribe(
+      (data)=>{
+        let userStr = localStorage.getItem("user");
+        if(userStr!=null){
+        this.da= JSON.parse(userStr)
+        }
+        this.isLoggedIn = this.login.isLoggedIn();
+        this.currentUserName = this.da
+        
+      }
+    )
+  
 
-  this.login.loginSubjectStatus.asObservable().subscribe(
-    (data)=>{
-      this.isLoggedIn = this.login.isLoggedIn();
-      this.currentUserName = this.login.getUserDetials();
+    this.login.loginSubjectStatus.asObservable().subscribe(
+      (data) => {
+
+       
+
+        if (this.login.status) {
+
+          this.isLoggedIn = this.login.isLoggedIn();
+          this.currentUserName = this.login.getUserDetials();
+
+        } else if (!this.login.status) {
+
+          this.isLoggedIn = false;
+          this.currentUserName = null;
+
+        }
+      }
+    )
+  }
+
+
+  public profile() {
+    if (this.login.getUserRole()=='ADMIN') {
+
+      this.router.navigate(['/admin/profile'])
+      
+    }else  if (this.login.getUserRole()=='NORMAL'){
+
+      //redirect ..NORMAL: normal-dashboard
+     
+      this.router.navigate(['/user-dashboard/profile'])
     }
-  ) 
     
   }
-  
-  public profile(){
-    this.router.navigate(['/admin/profile'])
-  }
 
-  public logout(){
+  public logout() {
     this.login.logout()
     this.isLoggedIn = false;
-    this.currentUserName =null;
+    this.currentUserName = null;
     this.router.navigate(['login'])
-  
+
   }
 }

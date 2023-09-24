@@ -1,0 +1,74 @@
+
+<div class="bootstrap-wrapper mt20 " *ngIf="QRStatus">
+    <div class="contianer-fluid">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    Quiz History
+                </mat-card-title>
+                <mat-card-subtitle>
+                    Here you will see data of you preious quiz attempts
+                </mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <mat-divider></mat-divider>
+                <br>
+                <div class="row mt10">
+
+                    <div class="col-md-6 ">
+                        Total Quiz attempted : {{totalAttempts}}
+                    </div>
+
+                    <div class="col-md-6">
+                        Types of Quiz attempted : {{numberOfQuiz}}
+                    </div>
+                </div>
+                <div class="row mt10">
+
+                    <div class="col-md-6 ">
+                        Average. Score: {{averageScore}}
+                    </div>
+
+                    <div class="col-md-6">
+                        Most Attempted Quiz : {{mostAttemptedQuiz}}
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <div class="w100 mt20" *ngFor="let qr of QRdata">
+
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{qr.quiz.title}}</mat-card-title>
+                    <mat-card-subtitle>{{qr.quiz.category.title}}</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                    {{qr.quiz.description}}
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-stroked-button color="primary">Best Score : {{qr.bestScore}}</button>
+                    <button mat-stroked-button color="primary" class="ml10">Attempts made : {{qr.attempts}}</button>
+                    <button mat-stroked-button color="primary" class="ml10">Last attempted on :
+                        {{qr.lastAttemptedOn}}</button>
+
+                </mat-card-actions>
+
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<div class="bootstrap-wrapper mt20 " *ngIf="!QRStatus">
+    <div class="contianer-fluid">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Not data to show</mat-card-title>
+                <mat-card-subtitle>Please give some quiz test to see the results here.</mat-card-subtitle>
+            </mat-card-header>
+
+        </mat-card>
+    </div>
+</div>

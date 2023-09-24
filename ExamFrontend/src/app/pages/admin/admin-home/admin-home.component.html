@@ -1,1 +1,52 @@
-<h1>welcome to Admin Home page</h1>
+<div class="bootstrap-wrapper mt20 " *ngIf="QRdata">
+    <div class="contianer-fluid">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    Quiz History
+                </mat-card-title>
+                <mat-card-subtitle>
+                    List of the quizzes user attempted
+                </mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <mat-divider></mat-divider>
+                
+            </mat-card-content>
+        </mat-card>
+    
+
+        <div class="w100 mt20" *ngFor="let qr of QRdata">
+
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>{{qr.quiz.title}}</mat-card-title>
+                    <mat-card-subtitle>{{qr.quiz.category.title}}</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                    {{qr.quiz.description}}
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-stroked-button color="primary">Max Questions : {{qr.quiz.numberOfQuestions}}</button>
+                    <button mat-stroked-button color="primary">Max Marks : {{qr.quiz.maxMarks}}</button>
+                    <button mat-stroked-button color="primary" class="ml10">User Attempted: {{qr.totalAttempts}}</button>
+                </mat-card-actions>
+
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+<div class="bootstrap-wrapper mt20 " *ngIf="!QRdata">
+    <div class="contianer-fluid">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Not data to show</mat-card-title>
+                <mat-card-subtitle>Please give some quiz test to see the results here.</mat-card-subtitle>
+            </mat-card-header>
+
+        </mat-card>
+    </div>
+</div>

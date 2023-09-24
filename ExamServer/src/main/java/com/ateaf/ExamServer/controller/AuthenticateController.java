@@ -4,6 +4,7 @@ import com.ateaf.ExamServer.config.JwtUtils;
 import com.ateaf.ExamServer.model.JwtRequest;
 import com.ateaf.ExamServer.model.JwtResponse;
 import com.ateaf.ExamServer.model.User;
+import com.ateaf.ExamServer.service.impl.UserDetailsImpl;
 import com.ateaf.ExamServer.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -62,7 +65,13 @@ public class AuthenticateController {
 
     //returns the details of current user
     @GetMapping("/current-user")
-    public User getCurrentUser(Principal principal){
-        return ((User) this.userDetailsService.loadUserByUsername(principal.getName()));
+    public Map<String, Object> getCurrentUser(Principal principal){
+        UserDetailsImpl userDetails = (UserDetailsImpl) this.userDetailsService.loadUserByUsername(principal.getName());
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("user", userDetails.getUser());
+        response.put("authorities", userDetails.getAuthorities());
+
+        return response;
     }
 }

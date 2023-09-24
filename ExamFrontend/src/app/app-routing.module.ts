@@ -18,87 +18,130 @@ import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.compo
 import { ViewQuestionsComponent } from './pages/admin/view-questions/view-questions.component';
 import { AddQuestionsComponent } from './pages/admin/add-questions/add-questions.component';
 import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
+import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
+import { PrequizInstructionsComponent } from './pages/user/prequiz-instructions/prequiz-instructions.component';
+import { StartComponent } from './pages/user/start/start.component';
+import { UserQuizDashboardComponent } from './pages/user/user-quiz-dashboard/user-quiz-dashboard.component';
+import { UpdateProfileComponent } from './pages/profile/update-profile/update-profile.component';
+import { ForgotPasswordComponent } from './pages/profile/forgot-password/forgot-password.component';
 
 
 const routes: Routes = [
 
   // testing
   {
-    path:'Temp',
-    component:TempComponent, 
-    pathMatch:'full'
+    path: 'Temp',
+    component: TempComponent,
+    pathMatch: 'full'
   },
 
   {
-    path:'',
-    component:HomeComponent, 
-    pathMatch:'full'
+    path: '',
+    component: HomeComponent,
+    pathMatch: 'full'
   },
   {
-    path:'signup', 
-    component:SignupComponent, 
-    pathMatch:'full'
+    path: 'signup',
+    component: SignupComponent,
+    pathMatch: 'full'
   },
   {
-    path:'login', 
-    component:LoginComponent, 
-    pathMatch:'full'
-  },  
+    path: 'login',
+    component: LoginComponent,
+    pathMatch: 'full'
+  },
   {
-    path:'admin', 
-    component:DashboardComponent,
-    canActivate:[AdminGuard],
+    path: 'forgotPassword',
+    component: ForgotPasswordComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'admin',
+    component: DashboardComponent,
+    canActivate: [AdminGuard],
     children: [
       {
-        path:'home', 
-        component:AdminHomeComponent, 
+        path: 'home',
+        component: AdminHomeComponent,
       },
       {
-        path:'profile', 
-        component:ProfileComponent, 
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {          
+        path: 'profile/update/:id',
+        component: UpdateProfileComponent,
       },
       {
-        path:'categories', 
-        component:ViewCategoriesComponent, 
+        path: 'categories',
+        component: ViewCategoriesComponent,
       },
       {
-        path:'add-category', 
-        component:AddCategoriesComponent, 
+        path: 'add-category',
+        component: AddCategoriesComponent,
       },
       {
-        path:'quizzes', 
-        component:ViewQuizzesComponent, 
+        path: 'quizzes',
+        component: ViewQuizzesComponent,
       },
       {
-        path:'add-quiz', 
-        component:AddQuizzesComponent, 
+        path: 'add-quiz',
+        component: AddQuizzesComponent,
       },
       {
-        path:'update-quiz/:qid', 
-        component:UpdateQuizComponent, 
+        path: 'update-quiz/:qid',
+        component: UpdateQuizComponent,
       },
       {
-        path:'questions/:qid/:title', 
-        component:ViewQuestionsComponent, 
+        path: 'questions/:qid/:title',
+        component: ViewQuestionsComponent,
       },
       {
-        path:'add-question', 
-        component:AddQuestionsComponent, 
+        path: 'add-question/:qid/:title',
+        component: AddQuestionsComponent,
       },
       {
-        path:'update-question/:qid', 
-        component:UpdateQuestionComponent, 
+        path: 'update-question/:questionid',
+        component: UpdateQuestionComponent,
       },
-
-
-  ],
-  
-   },
+    ],
+  },
   {
-    path:'user-dashboard', 
-    component:UserDashboardComponent, 
-    pathMatch:'full',
-    canActivate:[NormalGuard],
+    path: 'user-dashboard',
+    component: UserDashboardComponent,
+    canActivate: [NormalGuard],
+    children: [
+      {
+        path: 'home',
+        component: UserQuizDashboardComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+      {          
+        path: 'profile/update/:id',
+        component: UpdateProfileComponent,
+      },
+      {
+        path: 'load-quiz',
+        component: LoadQuizComponent,
+      },
+      {
+        path: 'load-quiz/:qid',
+        component: LoadQuizComponent,
+      },
+      {
+        path: 'instructions/:qid',
+        component: PrequizInstructionsComponent,
+      },
+    ]
+  },
+  {
+    path: 'start/:qid',
+    component: StartComponent,
+    canActivate: [NormalGuard],
+    pathMatch: 'full'
   },
 ];
 

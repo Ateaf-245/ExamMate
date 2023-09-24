@@ -13,6 +13,7 @@ export class SidebarComponent {
 
   }
   public logout(){
+    this.login.status = false
     this.login.logout()
     this.router.navigate(['login'])
   }

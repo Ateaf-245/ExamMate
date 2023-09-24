@@ -1,5 +1,6 @@
 package com.ateaf.ExamServer.model.exam;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,6 +26,10 @@ public class Quiz {
 
     @OneToMany(mappedBy = "quiz",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Question> questions = new HashSet<>();
+
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<QuizResults> quizResults = new HashSet<>();
 
 }
 

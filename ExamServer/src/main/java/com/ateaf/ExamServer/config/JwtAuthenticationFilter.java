@@ -29,7 +29,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
        final String requestTokenHeader = request.getHeader("Authorization");
-        System.out.println(requestTokenHeader);
         String username=null;
         String jwtToken=null;
 
@@ -38,7 +37,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             try {
                 //remove Bearer from the header
                 jwtToken=requestTokenHeader.substring(7);
-                System.out.println(jwtToken);
                 // extract the username from token
                username = this.jwtUtil.extractUsername(jwtToken);
 
@@ -57,11 +55,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         //Validation
         if (username!=null && SecurityContextHolder.getContext().getAuthentication()==null){
             final UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-            System.out.println("stage 1");
+
 
             if(this.jwtUtil.validateToken(jwtToken,userDetails)){
                 //token is valid
-                System.out.println("stage 2");
+
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails,null,userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -70,7 +68,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }else {
             System.out.println("Token is not valid");
         }
-        System.out.println("stage 3");
         filterChain.doFilter(request,response);
     }
 }

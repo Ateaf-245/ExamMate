@@ -24,6 +24,10 @@ body {
     width: 100%;
 }
 
+.selection_btn_size{
+    size:10px;
+}
+
 /* margins */
 .mt20{
     margin-top:20px;

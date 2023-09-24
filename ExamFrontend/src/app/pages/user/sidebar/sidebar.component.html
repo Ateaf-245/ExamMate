@@ -1,0 +1,27 @@
+<mat-card>
+    <mat-action-list>
+        <div class="container">
+        <div mat-subheader>Menu</div>
+        
+        <button mat-list-item routerLink="/user-dashboard/home" >
+            <mat-icon class="Icon_style" mat-list-icon>home</mat-icon>
+            <span> Home</span>
+        </button>
+        
+        <button mat-list-item routerLink="/user-dashboard" 
+                [routerLink]="'/user-dashboard/load-quiz/'" >
+            <mat-icon class="Icon_style" mat-list-icon>post_add</mat-icon>
+            <span> All Quizzes</span>
+        </button>
+
+        <button mat-list-item *ngFor="let c of categories" 
+                [routerLink]="'/user-dashboard/load-quiz/'+c.cid"
+                [value]="c.cid" >
+            <mat-icon class="Icon_style" mat-list-ico>post_add</mat-icon>
+            <span>{{c.title}}</span>
+        </button>
+    
+    </div>
+    </mat-action-list>
+</mat-card>
+

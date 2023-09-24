@@ -9,6 +9,8 @@ import { Subject } from 'rxjs';
 })
 export class LoginService {
 
+  public status = true;
+
   public loginSubjectStatus = new Subject<boolean>();
 
   constructor(private http: HttpClient) { 
@@ -62,11 +64,14 @@ export class LoginService {
   }
 
   
+user:any
+
   // get userDetials
   public getUserDetials(){
     let userStr = localStorage.getItem("user");
     if(userStr!=null){
-      return JSON.parse(userStr);
+      this.user = JSON.parse(userStr);
+      return this.user
     } else {
       this.logout();
       return null;
